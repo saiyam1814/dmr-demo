@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Release Note Explainer (Docker Model Runner + DGX)</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    textarea {
+      width: 100%;
+      min-height: 180px;
+      font-family: monospace;
+      padding: 0.75rem;
+    }
+    button {
+      padding: 0.6rem 1.2rem;
+      margin-top: 0.5rem;
+      cursor: pointer;
+    }
+    .panel {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fafafa;
+      white-space: pre-wrap;
+    }
+    h1, h2 {
+      margin-bottom: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Release Note Explainer</h1>
+  <p>
+    Powered by <strong>Docker Model Runner</strong> running on <strong>NVIDIA DGX Spark</strong>.
+    Paste any release notes or logs below and let the local model summarize key points,
+    breaking changes, and action items.
+  </p>
+
+  <form method="post" action="/analyze">
+    <textarea name="text" placeholder="Paste release notes, logs, or config here...">{{ original or "" }}</textarea>
+    <br />
+    <button type="submit">Analyze with Local Model</button>
+  </form>
+
+  {% if analysis %}
+  <div class="panel">
+    <h2>Model Analysis</h2>
+    <div>{{ analysis }}</div>
+  </div>
+  {% endif %}
+</body>
+</html>
+
